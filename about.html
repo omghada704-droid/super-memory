@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <link rel="canonical" href="https://mozakrty.com/" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="منصة Mozakrty Store - الحل الأمثل لحماية وتوزيع مذكرات المدرسين بأعلى تقنيات الأمان ومنع التسريب لطلبة الأقاليم." />
+    <link rel="icon" type="image/svg+xml" href="src/img/icon.png" />
+    <title>Mozakrty - من نحن</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- DotLottie Player Script -->
+    <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
+  </head>
+  <body class="moz-night">
+    <!-- Mobile Sidebar Navigation -->
+    <nav class="mobile-sidebar" id="mobileSidebar">
+      <a href="index.html#hero" class="mobile-sidebar-icon" title="الرئيسية">
+        <i class="fa-solid fa-house"></i>
+      </a>
+      <a href="shop.html" class="mobile-sidebar-icon" title="المتجر">
+        <i class="fa-solid fa-store"></i>
+      </a>
+      <a href="about.html" class="mobile-sidebar-icon active" title="من نحن">
+        <i class="fa-solid fa-circle-info"></i>
+      </a>
+      <a href="support.html" class="mobile-sidebar-icon" title="الدعم">
+        <i class="fa-solid fa-headset"></i>
+      </a>
+      <a href="order.html" class="mobile-sidebar-icon mobile-cart-icon" title="السلة" style="position: relative;">
+        <i class="fa-solid fa-cart-shopping"></i>
+        <span id="sidebar-cart-count" class="sidebar-cart-count">0</span>
+      </a>
+      <!-- User Profile / Login Button -->
+      <a href="Login.html" class="mobile-sidebar-icon mobile-login-icon" id="mobileLoginIcon" title="تسجيل الدخول">
+        <i class="fa-solid fa-right-to-bracket"></i>
+      </a>
+      <a href="account.html" class="mobile-sidebar-icon mobile-profile-icon" id="mobileProfileIcon" title="حسابي" style="display: none;">
+        <i class="fa-solid fa-user"></i>
+      </a>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileOverlay" onclick="toggleMobileMenu()"></div>
+
+    <!-- Mobile Bottom Menu (Bottom Sheet) -->
+    <div class="mobile-bottom-menu" id="mobileBottomMenu">
+      <div class="mobile-menu-header">
+        <!-- User Info (Shown when logged in) -->
+        <div class="mobile-user-info" id="mobileUserInfo" style="display: none;">
+          <div class="mobile-user-avatar" id="mobileUserAvatar">A</div>
+          <span class="mobile-user-name" id="mobileUserName">Ahmed</span>
+        </div>
+        <!-- Guest Info (Shown when not logged in) -->
+        <div class="mobile-user-info" id="mobileGuestInfo">
+          <span class="mobile-user-name">زائر</span>
+        </div>
+        <button class="mobile-menu-close" onclick="toggleMobileMenu()">&times;</button>
+      </div>
+      <!-- Logout Button (Shown when logged in) -->
+      <button class="mobile-logout-btn" id="mobileLogoutBtn" onclick="logout()" style="display: none;">
+        <i class="fa-solid fa-right-from-bracket"></i>
+        <span>تسجيل الخروج</span>
+      </button>
+      <nav class="mobile-nav">
+        <a href="index.html#hero" class="mobile-nav-item" onclick="toggleMobileMenu()">
+          <i class="fa-solid fa-house"></i>
+          <span>الرئيسية</span>
+        </a>
+        <a href="shop.html" class="mobile-nav-item" onclick="toggleMobileMenu()">
+          <i class="fa-solid fa-store"></i>
+          <span>المتجر</span>
+        </a>
+        <a href="about.html" class="mobile-nav-item" onclick="toggleMobileMenu()">
+          <i class="fa-solid fa-circle-info"></i>
+          <span>من نحن</span>
+        </a>
+        <a href="support.html" class="mobile-nav-item" onclick="toggleMobileMenu()">
+          <i class="fa-solid fa-headset"></i>
+          <span>الدعم</span>
+        </a>
+        <a href="Login.html" class="mobile-nav-item" onclick="toggleMobileMenu()">
+          <i class="fa-solid fa-right-to-bracket"></i>
+          <span>تسجيل الدخول</span>
+        </a>
+      </nav>
+    </div>
+
+    <header class="moz-navbar">
+      <div class="moz-container moz-navbar-inner" style="display: flex; align-items: center; justify-content: space-between; gap: 20px;">
+        <!-- اللوجو مع العداد على اليمين -->
+        <div class="moz-header-logo" style="display: flex; align-items: center; gap: 10px;">
+          <a href="order.html" class="cart-logo-link" style="display: flex; align-items: center; gap: 10px; text-decoration: none; position: relative;">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z'/%3E%3C/svg%3E" alt="Cart" style="width: 35px; height: 35px;">
+                <span id="cart-count-badge" class="cart-count-badge" style="position: absolute; top: -8px; right: -8px; background: linear-gradient(135deg, #ff4757, #ff6b81); color: white; font-size: 13px; font-weight: 800; min-width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 3px solid #ffffff; box-shadow: 0 3px 10px rgba(255,71,87,0.4);">0</span>
+            </a>
+        </div>
+        
+        <!-- المنيو في النص -->
+        <nav class="desktop-nav" style="flex: 1; display: flex; justify-content: center;">
+          <ul class="moz-nav-list" style="display: flex; gap: 25px; list-style: none; margin: 0; padding: 0;">
+            <li><a href="index.html#hero">الرئيسية</a></li>
+            <li><a href="shop.html">المتجر</a></li>
+            <li><a href="about.html" class="is-active">من نحن</a></li>
+            <li><a href="support.html">الدعم</a></li>
+          </ul>
+        </nav>
+        
+        <!-- أزرار الدخول وزر المينو على الشمال -->
+        <div style="display: flex; align-items: center; gap: 15px;">
+          <!-- أزرار سطح المكتب -->
+          <div class="moz-auth-actions" id="aboutAuthActions" style="display: flex; align-items: center; gap: 15px;">
+            <a href="Login.html" class="moz-btn moz-btn-ghost moz-auth-link">تسجيل الدخول</a>
+            <a href="Login.html" class="moz-btn moz-btn-primary moz-auth-link">إنشاء حساب</a>
+          </div>
+
+          <!-- Mobile Menu Button -->
+          <button class="mobile-menu-btn" id="mobileMenuBtn" onclick="toggleMobileMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <script>
+      // Mobile Sidebar Active State
+      document.addEventListener('DOMContentLoaded', function() {
+        const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+        const sidebarIcons = document.querySelectorAll('.mobile-sidebar-icon');
+
+        sidebarIcons.forEach(icon => {
+          const href = icon.getAttribute('href');
+          if (href === currentPage || (currentPage === '' && href === 'index.html')) {
+            icon.classList.add('active');
+          }
+        });
+        
+        // تحديث حالة تسجيل الدخول
+        updateLoginIcon();
+      });
+
+      // تحديث أيقونة تسجيل الدخول / البروفايل
+      function updateLoginIcon() {
+        const loginIcon = document.getElementById('mobileLoginIcon');
+        const profileIcon = document.getElementById('mobileProfileIcon');
+        const user = localStorage.getItem('session_user');
+        
+        if (user && loginIcon && profileIcon) {
+          loginIcon.style.display = 'none';
+          profileIcon.style.display = 'flex';
+        } else if (loginIcon && profileIcon) {
+          loginIcon.style.display = 'flex';
+          profileIcon.style.display = 'none';
+        }
+      }
+
+      // Mobile Menu Toggle
+      function toggleMobileMenu() {
+        const menu = document.getElementById('mobileBottomMenu');
+        const overlay = document.getElementById('mobileOverlay');
+        menu.classList.toggle('is-open');
+        overlay.classList.toggle('is-visible');
+      }
+
+      // تحديث عداد السلة
+      function updateCartCount() {
+        const cart = JSON.parse(localStorage.getItem('user_cart')) || [];
+        
+        // تحديث عداد الهيدر
+        const countElement = document.getElementById('cart-count-badge');
+        if (countElement) {
+          countElement.innerText = cart.length;
+          countElement.classList.add('bump');
+          setTimeout(() => countElement.classList.remove('bump'), 400);
+        }
+        
+        // تحديث عداد الشريط الجانبي
+        const sidebarCountElement = document.getElementById('sidebar-cart-count');
+        if (sidebarCountElement) {
+          sidebarCountElement.innerText = cart.length;
+        }
+      }
+    </script>
+
+    <script src="products.js"></script>
+    <script src="app.js"></script>
+
+    <main>
+      <section class="moz-section">
+        <div class="moz-container moz-about-layout">
+          <div class="moz-about-text">
+            <h1 class="moz-section-title">منصة مذكرتي .. شريكك دايما</h1>
+            <p>
+              مذكرتي اتولدت من احتياج حقيقي لطلاب محتاجين مكان موثوق يلاقي فيه كل
+              المذكرات والكتب اللي بيذاكر منها، من غير لف كتير ولا توتر قبل الامتحان.
+            </p>
+            <p>
+              بنجمع المحتوى من أفضل المدرسين والمراكز، ونقدمه في تجربة استخدام بسيطة
+              وسريعة تناسب شكل المتاجر الإلكترونية الحديثة، مع شحن منظم وأسعار واضحة.
+            </p>
+          </div>
+          <div class="moz-hero-moon-wrapper" style="flex-shrink: 0;">
+            <dotlottie-player
+              src="https://lottie.host/e37ee407-b107-40b5-996f-b7a4412dbd59/o4bmHegxQy.lottie"
+              background="transparent"
+              speed="1"
+              style="width: 600px; height: auto;"
+              autoplay
+              loop>
+            </dotlottie-player>
+          </div>
+        </div>
+      </section>
+
+      <section class="moz-section moz-section-alt">
+        <div class="moz-container">
+          <h2 class="moz-section-title">إزاي بنفكر؟</h2>
+          <p class="moz-section-sub">
+            قيم بسيطة بنشتغل بيها في كل قرار علشان نخدم الطلاب وأولياء الأمور بأفضل شكل.
+          </p>
+          <div class="moz-features-grid">
+            <article class="moz-feature-card">
+              <div class="moz-feature-icon">
+                <i class="fa-solid fa-lightbulb"></i>
+              </div>
+              <h3>بساطة في كل خطوة</h3>
+              <p>من أول اختيار الكتاب لحد توصيله لباب البيت، كل حاجة واضحة وسهلة.</p>
+            </article>
+            <article class="moz-feature-card">
+              <div class="moz-feature-icon">
+                <i class="fa-solid fa-book-open-reader"></i>
+              </div>
+              <h3>تركيز على الطالب</h3>
+              <p>نختار المحتوى اللي فعلاً بيفرق في الفهم والتحصيل، مش مجرد صفحات زيادة.</p>
+            </article>
+            <article class="moz-feature-card">
+              <div class="moz-feature-icon">
+                <i class="fa-solid fa-hand-holding-heart"></i>
+              </div>
+              <h3>ثقة وشفافية</h3>
+              <p>أسعار ثابتة، مواعيد توصيل واضحة، وخدمة عملاء حقيقية تتابع معاك.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+    <section class="about-social">
+      <div class="moz-container">
+          <h2 class="section-title">تابعنا على منصاتنا</h2>
+          <div class="social-grid">
+              
+              <a href="https://www.facebook.com/profile.php?id=61586751599313" class="social-card facebook">
+                  <div class="social-info">
+                      <i class="fa-brands fa-facebook-f"></i>
+                      <span>فيسبوك</span>
+                  </div>
+                  <i class="fa-solid fa-arrow-up-right-from-square"></i>
+              </a>
+
+              <a href="https://whatsapp.com/channel/0029VbBOmMi11ulIc9XEm01M" class="social-card whatsapp">
+                  <div class="social-info">
+                      <i class="fa-brands fa-whatsapp"></i>
+                      <span>واتساب</span>
+                  </div>
+                  <i class="fa-solid fa-arrow-up-right-from-square"></i>
+              </a>
+
+              <a href="https://www.tiktok.com/@mozakrty_3b" class="social-card tiktok">
+                  <div class="social-info">
+                      <i class="fa-brands fa-tiktok"></i>
+                      <span>تيك توك</span>
+                  </div>
+                  <i class="fa-solid fa-arrow-up-right-from-square"></i>
+              </a>
+
+              <a href="https://www.youtube.com/channel/UCl6JY2zKDtKsArs2Wlz3bSw" class="social-card youtube">
+                  <div class="social-info">
+                      <i class="fa-brands fa-youtube"></i>
+                      <span>يوتيوب</span>
+                  </div>
+                  <i class="fa-solid fa-arrow-up-right-from-square"></i>
+              </a>
+
+              <a href="https://t.me/sulttan_dev" class="social-card telegram">
+                <div class="social-info">
+                    <i class="fa-brands fa-telegram"></i>
+                    <span>تليجرام</span>
+                </div>
+                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </a>
+
+            <a href="#" class="social-card instgram">
+              <div class="social-info">
+                <i class="fa-brands fa-instagram"></i>
+                  <span>انستجرام</span>
+              </div>
+              <i class="fa-solid fa-arrow-up-right-from-square"></i>
+          </a>
+          </div>
+      </div>
+    </section>
+
+    <footer class="about-footer">
+      <div class="moz-container">
+          <div class="copyright-bar">
+              <div class="footer-rights">
+                  <a href="privacy.html" class="rights-link">© 2026 جميع الحقوق محفوظة لمنصة مذكراتي</a>
+                  <span class="sep">|</span>
+                  <p class="dev-tag">تم صنع الموقع بواسطه المطور:
+                      <a href="https://www.facebook.com/profile.php?id=61586751599313" target="_blank" class="sobhy-signature">Sobhy Ragab</a>
+                  </p>
+              </div>
+
+              <p class="made-with">صنع بكل حب لخدمة طلابنا</p>
+          </div>
+      </div>
+    </footer>
+  </body>
+</html>

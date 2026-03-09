@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="منصة Mozakrty Store - الحل الأمثل لحماية وتوزيع مذكرات المدرسين بأعلى تقنيات الأمان ومنع التسريب لطلبة الأقاليم." />
+    <link rel="icon" type="image/svg+xml" href="src/img/icon.png" />
+    <title>اختبار API - مذكرتي</title>
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: #222222;
+            color: #ffffff;
+            padding: 40px 20px;
+            margin: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #312f2f;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+        }
+        h1 {
+            text-align: center;
+            color: #ffffff;
+            margin-bottom: 30px;
+        }
+        .test-section {
+            background: #2a2828;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+        }
+        .test-section h2 {
+            color: #ffffff;
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+        button {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 10px;
+            font-weight: 700;
+            cursor: pointer;
+            font-family: 'Cairo', sans-serif;
+            margin: 5px;
+        }
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(59, 130, 246, 0.4);
+        }
+        .result {
+            background: #222222;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 15px;
+            max-height: 300px;
+            overflow-y: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            white-space: pre-wrap;
+        }
+        .success { color: #4ade80; }
+        .error { color: #ef4444; }
+        .info { color: #60a5fa; }
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 8px;
+            background: #222222;
+            color: #ffffff;
+            font-family: 'Cairo', sans-serif;
+            margin: 5px 0;
+        }
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 اختبار API - قاعدة بيانات Neon</h1>
+
+        <!-- اختبار جلب الطلبات -->
+        <div class="test-section">
+            <h2>📋 اختبار جلب الطلبات</h2>
+            <button onclick="testGetOrders()">جلب الطلبات</button>
+            <div id="getOrdersResult" class="result"></div>
+        </div>
+
+        <!-- اختبار إنشاء طلب -->
+        <div class="test-section">
+            <h2>➕ اختبار إنشاء طلب</h2>
+            <input type="text" id="testOrderId" placeholder="رقم الطلب (ORD-123456)" value="ORD-TEST-001">
+            <input type="text" id="testCustomerName" placeholder="اسم العميل" value="مستخدم تجريبي">
+            <input type="email" id="testCustomerEmail" placeholder="البريد الإلكتروني" value="test@example.com">
+            <textarea id="testItems" placeholder="المنتجات">منتج 1، منتج 2</textarea>
+            <button onclick="testCreateOrder()">إنشاء طلب تجريبي</button>
+            <div id="createOrderResult" class="result"></div>
+        </div>
+
+        <!-- اختبار تحديث حالة طلب -->
+        <div class="test-section">
+            <h2>🔄 اختبار تحديث حالة طلب</h2>
+            <input type="text" id="updateOrderId" placeholder="رقم الطلب">
+            <select id="updateStatus" style="width: 100%; padding: 10px; margin: 5px 0; background: #222222; color: #ffffff; border: 1px solid rgba(255,255,255,0.1); border-radius: 8px;">
+                <option value="pending">قيد الانتظار</option>
+                <option value="preparing">جاري التجهيز</option>
+                <option value="shipping">في التوصيل</option>
+                <option value="delivered">تم التوصيل</option>
+            </select>
+            <button onclick="testUpdateOrder()">تحديث الحالة</button>
+            <div id="updateOrderResult" class="result"></div>
+        </div>
+
+        <!-- اختبار إنشاء مستخدم -->
+        <div class="test-section">
+            <h2>👤 اختبار إنشاء مستخدم</h2>
+            <input type="text" id="testFirstName" placeholder="الاسم الأول" value="أحمد">
+            <input type="text" id="testLastName" placeholder="اسم الأب" value="محمد">
+            <input type="email" id="testEmail" placeholder="البريد الإلكتروني" value="ahmed@test.com">
+            <input type="tel" id="testPhone" placeholder="رقم الهاتف" value="01000000000">
+            <input type="password" id="testPassword" placeholder="كلمة المرور" value="test123">
+            <button onclick="testCreateUser()">إنشاء مستخدم تجريبي</button>
+            <div id="createUserResult" class="result"></div>
+        </div>
+
+        <!-- اختبار تسجيل الدخول -->
+        <div class="test-section">
+            <h2>🔐 اختبار تسجيل الدخول</h2>
+            <input type="email" id="loginEmail" placeholder="البريد الإلكتروني" value="ahmed@test.com">
+            <input type="password" id="loginPassword" placeholder="كلمة المرور" value="test123">
+            <button onclick="testLogin()">تسجيل الدخول</button>
+            <div id="loginResult" class="result"></div>
+        </div>
+    </div>
+
+    <script type="module">
+        const API_BASE = '/api';
+
+        // جلب الطلبات
+        window.testGetOrders = async function() {
+            const resultEl = document.getElementById('getOrdersResult');
+            resultEl.textContent = 'جاري التحميل...';
+            
+            try {
+                const response = await fetch(`${API_BASE}/get-orders`);
+                const data = await response.json();
+                resultEl.innerHTML = `<span class="success">✓ تم بنجاح</span>\n${JSON.stringify(data, null, 2)}`;
+            } catch (error) {
+                resultEl.innerHTML = `<span class="error">✗ خطأ</span>\n${error.message}`;
+            }
+        };
+
+        // إنشاء طلب
+        window.testCreateOrder = async function() {
+            const resultEl = document.getElementById('createOrderResult');
+            resultEl.textContent = 'جاري الإنشاء...';
+            
+            const orderData = {
+                id: document.getElementById('testOrderId').value,
+                customer: {
+                    name: document.getElementById('testCustomerName').value,
+                    email: document.getElementById('testCustomerEmail').value,
+                    phone: '01000000000',
+                    address: 'القاهرة، مصر'
+                },
+                itemsNames: document.getElementById('testItems').value,
+                itemsCount: 2,
+                total: 200,
+                shipping: 72,
+                finalTotal: 272,
+                paymentMethod: 'فودافون كاش',
+                status: 'pending'
+            };
+
+            try {
+                const response = await fetch(`${API_BASE}/create-order`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ orderData })
+                });
+                const data = await response.json();
+                resultEl.innerHTML = `<span class="success">✓ تم بنجاح</span>\n${JSON.stringify(data, null, 2)}`;
+            } catch (error) {
+                resultEl.innerHTML = `<span class="error">✗ خطأ</span>\n${error.message}`;
+            }
+        };
+
+        // تحديث طلب
+        window.testUpdateOrder = async function() {
+            const resultEl = document.getElementById('updateOrderResult');
+            resultEl.textContent = 'جاري التحديث...';
+            
+            try {
+                const response = await fetch(`${API_BASE}/update-order`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        orderId: document.getElementById('updateOrderId').value,
+                        status: document.getElementById('updateStatus').value
+                    })
+                });
+                const data = await response.json();
+                resultEl.innerHTML = `<span class="success">✓ تم بنجاح</span>\n${JSON.stringify(data, null, 2)}`;
+            } catch (error) {
+                resultEl.innerHTML = `<span class="error">✗ خطأ</span>\n${error.message}`;
+            }
+        };
+
+        // إنشاء مستخدم
+        window.testCreateUser = async function() {
+            const resultEl = document.getElementById('createUserResult');
+            resultEl.textContent = 'جاري الإنشاء...';
+            
+            const userData = {
+                firstName: document.getElementById('testFirstName').value,
+                lastName: document.getElementById('testLastName').value,
+                email: document.getElementById('testEmail').value,
+                mainPhone: document.getElementById('testPhone').value,
+                backupPhone: '',
+                grade: 'الثانوية العامة',
+                gov: 'القاهرة',
+                area: 'مدينة نصر',
+                address: 'شارع 1',
+                pass: document.getElementById('testPassword').value,
+                profilePic: ''
+            };
+
+            try {
+                const response = await fetch(`${API_BASE}/create-user`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ userData })
+                });
+                const data = await response.json();
+                resultEl.innerHTML = `<span class="success">✓ تم بنجاح</span>\n${JSON.stringify(data, null, 2)}`;
+            } catch (error) {
+                resultEl.innerHTML = `<span class="error">✗ خطأ</span>\n${error.message}`;
+            }
+        };
+
+        // تسجيل الدخول
+        window.testLogin = async function() {
+            const resultEl = document.getElementById('loginResult');
+            resultEl.textContent = 'جاري تسجيل الدخول...';
+            
+            try {
+                const response = await fetch(`${API_BASE}/login`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        email: document.getElementById('loginEmail').value,
+                        password: document.getElementById('loginPassword').value
+                    })
+                });
+                const data = await response.json();
+                resultEl.innerHTML = `<span class="success">✓ تم بنجاح</span>\n${JSON.stringify(data, null, 2)}`;
+            } catch (error) {
+                resultEl.innerHTML = `<span class="error">✗ خطأ</span>\n${error.message}`;
+            }
+        };
+    </script>
+</body>
+</html>

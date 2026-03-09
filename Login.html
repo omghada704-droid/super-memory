@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <link rel="canonical" href="https://mozakrty.com/" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="منصة Mozakrty Store - الحل الأمثل لحماية وتوزيع مذكرات المدرسين بأعلى تقنيات الأمان ومنع التسريب لطلبة الأقاليم." />
+    <link rel="icon" type="image/svg+xml" href="src/img/icon.png" />
+    <title>تسجيل حساب جديد - مذكراتي</title>
+    <style>
+        /* --- Hide Scrollbar (Keep Scrolling Functionality) --- */
+        ::-webkit-scrollbar {
+            display: none;
+            width: 0;
+            height: 0;
+        }
+        html {
+            scrollbar-width: none;
+        }
+        body {
+            -ms-overflow-style: none;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&display=swap');
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: #222222;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .auth-card {
+            background: #312f2f;
+            width: 100%;
+            max-width: 550px;
+            border-radius: 24px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            padding: 40px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #ffffff;
+            font-weight: 800;
+            margin-bottom: 30px;
+            font-size: 28px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .full-width { grid-column: span 2; }
+
+        label {
+            font-weight: 600;
+            color: #cbd5e1;
+            font-size: 14px;
+            padding-right: 5px;
+        }
+
+        input {
+            padding: 14px;
+            border: 1.5px solid #312f2f;
+            border-radius: 12px;
+            font-family: 'Cairo';
+            font-size: 15px;
+            transition: 0.3s;
+            background: #222222;
+            color: #ffffff;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #3b82f6;
+            background: #1a1a1a;
+            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.2);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            color: white;
+            border: none;
+            padding: 16px;
+            border-radius: 14px;
+            font-weight: 800;
+            font-size: 17px;
+            cursor: pointer;
+            margin-top: 25px;
+            transition: 0.3s;
+            width: 100%;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(37, 99, 235, 0.3);
+        }
+
+        .switch-form {
+            text-align: center;
+            margin-top: 25px;
+            color: #cbd5e1;
+            font-size: 14px;
+        }
+
+        .switch-form span {
+            color: #3b82f6;
+            font-weight: 700;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
+        .hidden { display: none; }
+
+        /* Responsive for mobile devices */
+        @media (max-width: 600px) {
+            body {
+                padding: 15px;
+                align-items: flex-start;
+                padding-top: 40px;
+            }
+
+            .auth-card {
+                padding: 25px 20px;
+                border-radius: 20px;
+            }
+
+            h2 {
+                font-size: 22px;
+                margin-bottom: 20px;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .full-width {
+                grid-column: 1;
+            }
+
+            input {
+                padding: 12px;
+                font-size: 14px;
+            }
+
+            .btn-primary {
+                padding: 14px;
+                font-size: 16px;
+                margin-top: 20px;
+            }
+
+            .switch-form {
+                font-size: 13px;
+                margin-top: 20px;
+            }
+        }
+
+        /* Ultra small devices */
+        @media (max-width: 400px) {
+            .auth-card {
+                padding: 20px 15px;
+            }
+
+            h2 {
+                font-size: 20px;
+            }
+
+            input {
+                padding: 10px;
+                font-size: 13px;
+            }
+
+            .btn-primary {
+                padding: 12px;
+                font-size: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="auth-card">
+    <div id="signup-box">
+        <h2>إنشاء حساب جديد .. علي مذكرتي</h2>
+        <form id="signup-form">
+            <div class="form-grid">
+                <div class="input-group">
+                    <label>الاسم الأول</label>
+                    <input type="text" id="fname" placeholder="اكتب اسمك الاول" required>
+                </div>
+                <div class="input-group">
+                    <label>الاسم الثاني</label>
+                    <input type="text" id="lname" placeholder="اكتب اسم والدك" required>
+                </div>
+                <div class="input-group">
+                    <label>رقم الهاتف الأساسي</label>
+                    <input type="tel" id="main_phone" placeholder="01xxxxxxxxx" required>
+                </div>
+                <div class="input-group">
+                    <label>رقم الهاتف الاحتياطي</label>
+                    <input type="tel" id="backup_phone" placeholder="01xxxxxxxxx">
+                </div>
+                <div class="input-group full-width">
+                    <label>البريد الإلكتروني</label>
+                    <input type="email" id="reg_email" placeholder="example@gmail.com" required>
+                </div>
+                <div class="input-group">
+                    <label>السنة الدراسية</label>
+                    <input type="text" id="grade" placeholder="اكتب سنتك الدراسيه" required>
+                </div>
+                <div class="input-group">
+                    <label>المحافظة</label>
+                    <input type="text" id="gov" placeholder="اكتب محافظتك" required>
+                </div>
+                <div class="input-group full-width">
+                    <label>المنطقة / المركز</label>
+                    <input type="text" id="area" placeholder="اكتب منطقتك" required>
+                </div>
+                <div class="input-group full-width">
+                     <label>العنوان / الشارع</label>
+                     <input type="text" id="address" placeholder="اكتب عنوانك" required>
+                </div>
+                <div class="input-group">
+                    <label>كلمة المرور</label>
+                    <input type="password" id="reg_pass" placeholder="********" required>
+                </div>
+                <div class="input-group">
+                    <label>تأكيد كلمة المرور</label>
+                    <input type="password" id="confirm_pass" placeholder="********" required>
+                </div>
+            </div>
+            <button type="submit" class="btn-primary">إنشاء الحساب الآن</button>
+        </form>
+        <p class="switch-form">عندك حساب بالفعل؟ <span onclick="toggleAuth()">سجل دخولك</span></p>
+    </div>
+
+    <div id="login-box" class="hidden">
+        <h2>تسجيل الدخول</h2>
+        <form id="login-form">
+            <div class="input-group full-width" style="margin-bottom: 20px;">
+                <label>البريد الإلكتروني</label>
+                <input type="email" id="log_email" placeholder="example@gmail.com" required>
+            </div>
+            <div class="input-group full-width">
+                <label>كلمة المرور</label>
+                <input type="password" id="log_pass" placeholder="********" required>
+            </div>
+            <button type="submit" class="btn-primary">دخول للمنصة</button>
+        </form>
+        <p class="switch-form">معندكش حساب؟ <span onclick="toggleAuth()">أنشئ حساباً جديداً</span></p>
+    </div>
+</div>
+
+<script>
+    function toggleAuth() {
+        document.getElementById('signup-box').classList.toggle('hidden');
+        document.getElementById('login-box').classList.toggle('hidden');
+    }
+
+    // حفظ بيانات المستخدم في LocalStorage مع منع التكرار
+    document.getElementById('signup-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const p1 = document.getElementById('reg_pass').value;
+        const p2 = document.getElementById('confirm_pass').value;
+
+        if(p1 !== p2) {
+            showToast("كلمات المرور غير متطابقة!", "error");
+            return;
+        }
+
+        const email = document.getElementById('reg_email').value;
+        const mainPhone = document.getElementById('main_phone').value;
+
+        // التحقق من وجود الحساب بالفعل
+        const existingUser = localStorage.getItem('user_data_' + email);
+        if (existingUser) {
+            showToast("الحساب موجود بالفعل! سجل دخولك بدلاً من كدا", "error");
+            return;
+        }
+
+        // التحقق من رقم الموبايل
+        const allUsers = Object.keys(localStorage)
+            .filter(key => key.startsWith('user_data_'))
+            .map(key => JSON.parse(localStorage.getItem(key)));
+        
+        const phoneExists = allUsers.some(user => user.mainPhone === mainPhone);
+        if (phoneExists) {
+            showToast("رقم الموبايل ده مستخدم في حساب تاني!", "error");
+            return;
+        }
+
+        const userObj = {
+            firstName: document.getElementById('fname').value,
+            lastName: document.getElementById('lname').value,
+            email: email,
+            mainPhone: mainPhone,
+            backupPhone: document.getElementById('backup_phone').value,
+            grade: document.getElementById('grade').value,
+            gov: document.getElementById('gov').value,
+            area: document.getElementById('area').value,
+            address: document.getElementById('address').value,
+            pass: p1,
+            profilePic: 'https://i.ibb.co/VWSzZLSN/cb4572f19ab7505d552206ed5dfb3739.jpg'
+        };
+
+        // التخزين الدائم لكل مستخدم بإيميله
+        localStorage.setItem('user_data_' + userObj.email, JSON.stringify(userObj));
+        // تسجيله كمستخدم حالي
+        localStorage.setItem('session_user', JSON.stringify(userObj));
+
+        showToast("أهلاً بك يا " + userObj.firstName + "! تم إنشاء حسابك بنجاح", "success");
+        setTimeout(() => {
+            window.location.href = 'index.html';
+        }, 1500);
+    });
+
+    // تسجيل الدخول
+    document.getElementById('login-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const email = document.getElementById('log_email').value;
+        const pass = document.getElementById('log_pass').value;
+
+        const storedUser = JSON.parse(localStorage.getItem('user_data_' + email));
+
+        if(storedUser && storedUser.pass === pass) {
+            // إضافة الصورة الافتراضية لو مش موجودة
+            if (!storedUser.profilePic) {
+                storedUser.profilePic = 'https://i.ibb.co/VWSzZLSN/cb4572f19ab7505d552206ed5dfb3739.jpg';
+                localStorage.setItem('user_data_' + email, JSON.stringify(storedUser));
+            }
+            
+            localStorage.setItem('session_user', JSON.stringify(storedUser));
+            showToast("تم تسجيل الدخول بنجاح! أهلاً بك يا " + storedUser.firstName, "success");
+            setTimeout(() => {
+                window.location.href = 'index.html';
+            }, 1000);
+        } else {
+            showToast("الإيميل أو الباسورد غير صحيح!", "error");
+        }
+    });
+
+    // Toast Notification System لصفحة Login
+    function showToast(message, type = 'success') {
+        // إنشاء toast لو مش موجود
+        let toast = document.getElementById('toast-notification');
+        if (!toast) {
+            toast = document.createElement('div');
+            toast.id = 'toast-notification';
+            toast.className = 'toast-notification';
+            toast.innerHTML = `
+                <div class="toast-content">
+                    <i class="toast-icon fa-solid fa-circle-check"></i>
+                    <span class="toast-message" id="toastMessage"></span>
+                </div>
+                <button class="toast-close" onclick="this.parentElement.classList.remove('is-visible')">&times;</button>
+            `;
+            document.body.appendChild(toast);
+        }
+
+        const toastMessage = document.getElementById('toastMessage');
+        const toastIcon = toast.querySelector('.toast-icon');
+        
+        toastMessage.textContent = message;
+        
+        if (type === 'error') {
+            toastIcon.className = 'toast-icon fa-solid fa-circle-exclamation';
+            toastIcon.style.color = '#ff4757';
+        } else if (type === 'info') {
+            toastIcon.className = 'toast-icon fa-solid fa-circle-info';
+            toastIcon.style.color = '#3b82f6';
+        } else {
+            toastIcon.className = 'toast-icon fa-solid fa-circle-check';
+            toastIcon.style.color = '#2ed573';
+        }
+        
+        toast.classList.add('is-visible');
+        
+        setTimeout(() => {
+            toast.classList.remove('is-visible');
+        }, 3500);
+    }
+</script>
+
+</body>
+</html>

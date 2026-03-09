@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="منصة Mozakrty Store - الحل الأمثل لحماية وتوزيع مذكرات المدرسين بأعلى تقنيات الأمان ومنع التسريب لطلبة الأقاليم." />
+    <link rel="icon" type="image/svg+xml" href="src/img/icon.png" />
+    <title>شنطة الطلبات - مذكرتي</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        :root {
+            --primary-color: #3b82f6;
+            --bg-color: #222222;
+            --text-dark: #ffffff;
+            --white: #312f2f;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 0;
+            color: var(--text-dark);
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .header-area {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .header-area h1 {
+            font-weight: 900;
+            font-size: 2rem;
+            color: var(--text-dark);
+        }
+
+        /* --- تصميم كارت المنتج البريميوم --- */
+        .cart-items-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .cart-item {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 15px 25px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: transform 0.2s;
+        }
+
+        .cart-item:hover {
+            transform: scale(1.01);
+        }
+
+        .item-details {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .item-details img {
+            width: 70px;
+            height: 70px;
+            object-fit: cover;
+            border-radius: 12px;
+            background: #444;
+        }
+
+        .item-info h3 {
+            margin: 0;
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+
+        .item-info p {
+            margin: 5px 0 0;
+            color: var(--primary-color);
+            font-weight: 900;
+            font-size: 1rem;
+        }
+
+        .delete-btn {
+            background: rgba(239, 68, 68, 0.15);
+            color: #ef4444;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .delete-btn:hover {
+            background: #ef4444;
+            color: white;
+        }
+
+        /* --- صندوق الدفع (Checkout Section) --- */
+        .checkout-card {
+            background: var(--white);
+            margin-top: 30px;
+            padding: 25px;
+            border-radius: 25px;
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.05);
+            border: 2px solid var(--primary-color);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .total-price {
+            font-size: 1.4rem;
+            font-weight: 800;
+        }
+
+        .buy-btn {
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            color: white;
+            text-decoration: none;
+            padding: 15px 60px;
+            border-radius: 15px;
+            font-weight: 900;
+            font-size: 1.2rem;
+            box-shadow: 0 10px 20px rgba(37, 99, 235, 0.3);
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .buy-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 25px rgba(37, 99, 235, 0.4);
+        }
+
+        /* حالة السلة الفاضية */
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .empty-state i {
+            font-size: 4rem;
+            color: #475569;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- الهيدر مع اللوجو والعداد -->
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+            <a href="index.html" style="text-decoration: none; color: var(--text-dark); font-weight: bold;">
+                <i class="fa-solid fa-arrow-right"></i> العودة للرئيسية
+            </a>
+            <a href="order.html" class="cart-logo-link" style="display: flex; align-items: center; gap: 10px; text-decoration: none; position: relative;">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z'/%3E%3C/svg%3E" alt="Cart" style="width: 35px; height: 35px;">
+                <span id="cart-count-badge" class="cart-count-badge" style="position: absolute; top: -8px; right: -8px; background: linear-gradient(135deg, #ff4757, #ff6b81); color: white; font-size: 13px; font-weight: 800; min-width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 3px solid #ffffff; box-shadow: 0 3px 10px rgba(255,71,87,0.4);">0</span>
+            </a>
+        </div>
+
+        <div class="header-area">
+        </div>
+
+        <div id="cart-list" class="cart-items-list">
+            </div>
+
+        <div id="checkout-section" class="checkout-card" style="display: none;">
+            <div class="total-price">
+                عدد المنتجات: <span id="items-count">0</span>
+            </div>
+            <a href="pay.html" class="buy-btn">
+                <span>إتمام الطلب والدفع</span>
+                <i class="fa-solid fa-credit-card"></i>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // دالة عرض المنتجات من المخزن
+        function renderOrderPage() {
+            const cartList = document.getElementById('cart-list');
+            const checkoutSection = document.getElementById('checkout-section');
+            const itemsCount = document.getElementById('items-count');
+
+            // سحب البيانات من localStorage
+            const cart = JSON.parse(localStorage.getItem('user_cart')) || [];
+
+            if (cart.length === 0) {
+                cartList.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fa-solid fa-basket-shopping"></i>
+                        <p>وفر فلوسك واجمع مذكراتك.. هنا أرخص سعر للكتاب، والتوصيل هدية من مذكرتي</p>
+                        <a href="shop.html" style="color: var(--primary-color); font-weight: bold; text-decoration: none;">العودة للمتجر ←</a>
+                    </div>
+                `;
+                checkoutSection.style.display = 'none';
+                return;
+            }
+
+            // حساب السعر الإجمالي
+            const totalPrice = cart.reduce((sum, item) => sum + item.price, 0);
+            
+            // حساب الشحن: 60 جنيه + 6 جنيه لكل كتاب
+            const shipping = 60 + (cart.length * 6);
+            const finalTotal = totalPrice + shipping;
+
+            // عرض المنتجات
+            cartList.innerHTML = cart.map((item, index) => `
+                <div class="cart-item">
+                    <div class="item-details">
+                        <img src="${item.image}" alt="${item.name}">
+                        <div class="item-info">
+                            <h3>${item.name}</h3>
+                            <p>${item.price} جنيه</p>
+                        </div>
+                    </div>
+                    <button class="delete-btn" onclick="removeItem(${index})">
+                        <i class="fa-solid fa-trash-can"></i>
+                    </button>
+                </div>
+            `).join('');
+
+            // تحديث العدد والسعر الإجمالي وإظهار زر الشراء
+            itemsCount.innerText = cart.length;
+            
+            // إضافة إجمالي السعر
+            let totalPriceEl = checkoutSection.querySelector('.total-price');
+            totalPriceEl.innerHTML = `
+                عدد المنتجات: ${cart.length}
+                <div style="margin-top: 15px; font-size: 1.1rem; color: #cbd5e1; font-weight: 700;">
+                    سعر الكتب: ${totalPrice} جنيه
+                </div>
+                <div style="margin-top: 8px; font-size: 1rem; color: #94a3b8; font-weight: 600;">
+                    مصروفية الشحن: ${shipping} جنيه (60 + ${cart.length} × 6)
+                </div>
+                <div style="margin-top: 15px; font-size: 1.3rem; color: #ffffff; font-weight: 800;">
+                    الإجمالي النهائي: ${finalTotal} جنيه
+                </div>
+            `;
+            
+            checkoutSection.style.display = 'flex';
+        }
+
+        // دالة مسح منتج
+        function removeItem(index) {
+            let cart = JSON.parse(localStorage.getItem('user_cart')) || [];
+            cart.splice(index, 1);
+            localStorage.setItem('user_cart', JSON.stringify(cart));
+            renderOrderPage(); // إعادة العرض
+            updateCartCount(); // تحديث العداد
+        }
+
+        // تحديث عداد السلة
+        function updateCartCount() {
+            const cart = JSON.parse(localStorage.getItem('user_cart')) || [];
+            const countElement = document.getElementById('cart-count-badge');
+            if (countElement) {
+                countElement.innerText = cart.length;
+                countElement.classList.add('bump');
+                setTimeout(() => {
+                    countElement.classList.remove('bump');
+                }, 400);
+            }
+        }
+
+        // تشغيل الدالة فور فتح الصفحة
+        document.addEventListener('DOMContentLoaded', renderOrderPage);
+        updateCartCount();
+    </script>
+</body>
+</html>
